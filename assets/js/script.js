@@ -28,12 +28,13 @@ $( () => {
 
                 //cuerpo de la heroCard
                 $("#heroCard").html(`
-                <div class="card mb-3" >
-                    <div class="row ">
-                        <div class="col col-4">
-                            <img src="${img}" class="img-fluid rounded-start>
+                <h4 class="text-center">SuperHero Encontrado</h4>
+                <div class="card" >
+                    <div class="row g-0">
+                        <div class="col">
+                            <img src="${img}" class="img-fluid rounded-start alt="${name}">
                         </div>
-                        <div class="col col-8">
+                        <div class="col">
                             <div class="card-body">
                                 <h5 class="card-title">${name}</h5>
                                 <p class="card-text">Conexiones: ${connections} </p>
