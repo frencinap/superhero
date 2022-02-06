@@ -1,4 +1,3 @@
-// https://superheroapi.com/api/10227239002900026/1
 $( () => {
 
     //captura dato del input
@@ -6,6 +5,14 @@ $( () => {
         e.preventDefault()
 
         let superHero = $("input").val()
+
+        //label de error en id
+        let error = parseInt(superHero)
+        if( error < 1 || error > 732){
+            $(".error").html(`El número ingresado está fuera de rango, intenta con otro`)
+        }else{
+            $(".error").html(``)
+        }
 
         //Petición
         $.ajax({
@@ -24,7 +31,7 @@ $( () => {
                 let connections = conex[0]
                 let bio = Object.values(data.biography)
                 let firstApp = bio[4]
-                let alias = bio[2].join()
+                let alias = bio[2].join(', ')
 
                 //cuerpo de la heroCard
                 $("#heroCard").html(`
@@ -63,6 +70,43 @@ $( () => {
                     </div>
                 </div>
                 `)
+
+                //datos para el gráfico
+                let powerstats = data.powerstats
+                //console.log(powerstats);
+                let combat = parseInt(powerstats.combat)
+                let power = parseInt(powerstats.power)
+                let durability = parseInt(powerstats.durability)
+                let intelligence = parseInt(powerstats.intelligence)
+                let strength = parseInt(powerstats.strength)
+                let speed = parseInt(powerstats.speed)
+
+                let chart = new CanvasJS.Chart("chartContainer", {
+                    theme: "light2", // "light1", "light2", "dark1", "dark2"
+                    exportEnabled: true,
+                    animationEnabled: true,
+                    title: {
+                        text: `Estadísticas de poder para ${name}`  
+                    },
+                    data: [{
+                        type: "pie",
+                        startAngle: 25,
+                        toolTipContent: "<b>{label}</b>: {y}",
+                        showInLegend: "true",
+                        legendText: "{label}",
+                        indexLabelFontSize: 16,
+                        indexLabel: "{label} - {y}",
+                        dataPoints: [
+                            { y: intelligence, label: "Inteligencia" },
+                            { y: speed, label: "Velocidad" },
+                            { y: strength, label: "Fuerza" },
+                            { y: durability, label: "Resistencia" },
+                            { y: power, label: "Poder" },
+                            { y: combat , label: "Combate" },
+                        ]
+                     }]
+                });
+                chart.render();
             },
             error: (error) => {
                 console.log(error);
@@ -70,42 +114,7 @@ $( () => {
         })
 
     })
-    //CanvasJS chart
-    window.onload = function() {
-
-        var chart = new CanvasJS.Chart("chartContainer", {
-            theme: "light2", // "light1", "light2", "dark1", "dark2"
-            exportEnabled: true,
-            animationEnabled: true,
-            title: {
-                text: `Estadísticas de poder para`  
-            },
-            data: [{
-                type: "pie",
-                startAngle: 25,
-                toolTipContent: "<b>{label}</b>: {y}%",
-                showInLegend: "true",
-                legendText: "{label}",
-                indexLabelFontSize: 16,
-                indexLabel: "{label} - {y}%",
-                dataPoints: [
-                    { y: 51.08, label: "Chrome" },
-                    { y: 27.34, label: "Internet Explorer" },
-                    { y: 10.62, label: "Firefox" },
-                    { y: 5.02, label: "Microsoft Edge" },
-                    { y: 4.07, label: "Safari" },
-                    { y: 1.22, label: "Opera" },
-                ]
-             }]
-        });
-        chart.render();
-
-    }
-     
-
-
     
-
 })
 
 
