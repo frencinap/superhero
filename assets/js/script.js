@@ -18,7 +18,7 @@ $( () => {
         $.ajax({
             url: `https://superheroapi.com/api.php/10227239002900026/${superHero}`,
             success: (data) => {
-                console.log(data);
+                //console.log(data);
 
                 //datos de la heroCard
                 let name = data.name
@@ -95,7 +95,7 @@ $( () => {
                         showInLegend: "true",
                         legendText: "{label}",
                         indexLabelFontSize: 16,
-                        indexLabel: "{label} - {y}",
+                        indexLabel: "{label} - {y} ",
                         dataPoints: [
                             { y: intelligence, label: "Inteligencia" },
                             { y: speed, label: "Velocidad" },
@@ -104,9 +104,10 @@ $( () => {
                             { y: power, label: "Poder" },
                             { y: combat , label: "Combate" },
                         ]
-                     }]
+                    }]
                 });
                 chart.render();
+              
             },
             error: (error) => {
                 console.log(error);

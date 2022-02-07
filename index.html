@@ -25,7 +25,7 @@
 
     <!-- Header -->
     <section class="container text-start my-1">
-        <img src="assets/img/sh1.jpg" class="header rounded mx-auto d-block my-1">
+        <img src="assets/img/sh1.jpg" class="header rounded mx-auto d-block my-1" id="img">
         <h1>Encuentra tu Superhero</h1>
         <form>
             <div class="mb-3">
@@ -33,17 +33,20 @@
               <input type="number" class="form-control" >
               <label class="form-label text-danger fst-italic error"></label>
             </div>
-            <button type="submit" class="btn btn-primary">Buscar</button>
+            <button type="submit" class="btn btn-primary" id="btn">Buscar</button>
           </form>
     </section>
 
     
     <!-- Heroe -->
-    <div id="heroCard" class="container my-2">
+    <div id="heroCard" class="container py-4">
     </div>
 
     <!-- CanvasJS chart -->
-    <div id="chartContainer" style="height: 360px; width: 100%;" class="my-2"></div>
+    <div class="container my-4">
+      <div id="chartContainer" style="height: 360px; width: 100%;"></div>
+    </div>
+    
 
 
     <!-- Bootstrap 5.1.3 -->
